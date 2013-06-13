@@ -1,0 +1,105 @@
+Ext.onReady(function(){
+	
+	Ext.define('EmpleadoModel', {
+		extend: 'Ext.data.Model',
+		fields:[
+		        {name:'id_usuario', type:'int'},
+		        {name:'nom_usuario', type:'string'},
+		        {name:'pat_usuario', type:'string'},
+		        {name:'mat_usuario', type:'string'},
+		        {name:'area', type:'string'},
+		        {name:'fecha_nacimiento', type:'string'},
+		        {name:'login', type:'string'},
+		        {name:'activo', type:'boolean'},
+		        {name:'cumple', type:'string'},
+		        {name:'tiene_foto', type:'boolean'}
+		        ]
+	}); 
+	
+		
+	var storeEmpleados = Ext.create('Ext.data.Store', {
+		model: 'EmpleadoModel',
+		autoLoad:true,
+		autoSync:true,
+		proxy:{
+			type:'ajax',
+			api:{
+				read:'ServletConsultar',
+				update:'ServletModificar'
+			},
+			reader:{
+				root:'empleados'
+			}
+				
+		}
+	});
+	
+	var accordionMenu = new Ext.panel.Panel({
+		title:'Administrar Empleados',
+		witdth: 400,
+		height: 400,
+		layout: 'accordion',
+		layoutConfig:{
+			titleCollapse: false,
+			animate: true,
+			activeOnTop: true
+		},
+		items:[
+		       	{
+		       		title: 'Consultar',
+		       		html: '<div id="consultarEmpleados"></div>'
+		       	},
+		       	{
+		       		title: 'Buscar',
+		       		html: '<div id="buscarUsuarios"></div>'
+		       	},
+		       	{
+		       		title: 'Nuevo',
+		       		html: '<div id="nuevoUsuarios"></div>'
+		       	}
+		       
+		       ]
+		
+	});
+	
+	var gridEmpleados = new Ext.grid.GridPanel({
+		
+		
+		draggable: {
+			insertProxy:false,
+			onDrag:function(e){
+				var el = this.proxy.getEl();
+				this.x = el.getLeft(true);
+				this.y = el.getTop(true);
+			}
+		},
+		
+		title: 'Empleados',
+		store:'storeEmpleados',
+		columns:[
+		         {header:'ID', width:60, dataIndex:'id_usuario', sortable:true},
+		         {header:'NOM', width:60, dataIndex:'nom_usuario', sortable:true},
+		         {header:'PAT', width:60, dataIndex:'pat_usuario', sortable:true},
+		         {header:'MAT', width:60, dataIndex:'mat_usuario', sortable:true},
+		         {header:'AREA', width:60, dataIndex:'area', sortable:true},
+		         {header:'FECHA', width:60, dataIndex:'fecha_nacimiento', sortable:true},
+		         {header:'LOG', width:60, dataIndex:'login', sortable:true},
+		         {header:'ACT', width:60, dataIndex:'activo', sortable:true},
+		         {header:'CUM', width:60, dataIndex:'cumple', sortable:true},
+		         {header:'FOT', width:60, dataIndex:'tiene_foto', sortable:true}
+		         ],
+		plugins:[
+		         
+		         	Ext.create('Ext.grid.plugin.RowEditing', {
+		         		clicksToEdit:1
+		         	})
+		         
+		         ],         
+		
+		width: 310,
+		height: 150
+	});
+	
+	accordionMenu.render('administrarUsuarios');
+	gridEmpleados.render('consultarEmpleados');
+});

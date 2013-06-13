@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>PaginaWeb</display-name>
+  <welcome-file-list>
+    <welcome-file>ServletLogin</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>ServletLogin</servlet-name>
+    <servlet-class>mx.edu.iems.controller.ServletLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletLogin</servlet-name>
+    <url-pattern>/ServletLogin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletConsultar</display-name>
+    <servlet-name>ServletConsultar</servlet-name>
+    <servlet-class>mx.edu.iems.controller.ServletConsultar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletConsultar</servlet-name>
+    <url-pattern>/ServletConsultar</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletNuevo</display-name>
+    <servlet-name>ServletNuevo</servlet-name>
+    <servlet-class>mx.edu.iems.controller.ServletNuevo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletNuevo</servlet-name>
+    <url-pattern>/ServletNuevo</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>ServletUpdate</display-name>
+    <servlet-name>ServletUpdate</servlet-name>
+    <servlet-class>mx.edu.iems.controller.ServletUpdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletUpdate</servlet-name>
+    <url-pattern>/ServletUpdate</url-pattern>
+  </servlet-mapping>
+</web-app>
